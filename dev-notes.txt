@@ -2,3 +2,4 @@
 - improve error handling @ 2026-08-28T21:22:19+05:30
 - minor style fixes @ 2026-09-03T22:29:37+05:30
 - bump version @ 2026-08-14T13:28:11+05:30
+- improve naming @ 2026-03-12T21:41:41+05:30
