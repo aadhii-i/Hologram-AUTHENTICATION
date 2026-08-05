@@ -1,0 +1,44 @@
+# HSV thresholds for hologram color classification.
+# OpenCV HSV ranges: H in [0, 179], S in [0, 255], V in [0, 255].
+# These are defaults tuned for typical security-hologram foils; recalibrate
+# per dataset with `python run.py calibrate`.
+
+green:
+  h_min: 35
+  h_max: 85
+  s_min: 60
+  s_max: 255
+  v_min: 40
+  v_max: 255
+
+violet:
+  # Violet/magenta wraps toward the high end of OpenCV's hue scale.
+  h_min: 125
+  h_max: 160
+  s_min: 40
+  s_max: 255
+  v_min: 40
+  v_max: 255
+
+neutral:
+  # "Neutral" is defined by low saturation (near-white/near-gray glint),
+  # not by hue.
+  s_max: 40
+  v_min: 60
+  v_max: 255
+
+glare:
+  # Very bright, low-saturation pixels are treated as specular glare
+  # and excluded from color voting.
+  v_min: 240
+  s_max: 30
+
+dark:
+  v_max: 30
+
+low_saturation:
+  # Frames whose median saturation over the ROI falls below this are
+  # considered too washed out to classify reliably.
+  s_max: 20
+
+min_class_pixel_ratio: 0.15

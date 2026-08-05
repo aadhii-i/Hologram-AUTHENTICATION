@@ -1,0 +1,74 @@
+# Global pipeline configuration for the Hologram Genuineness Detector.
+
+paths:
+  dataset_dir: dataset
+  outputs_dir: outputs
+  frames_dir: outputs/frames
+  graphs_dir: outputs/graphs
+  roi_dir: outputs/roi
+  reports_dir: outputs/reports
+  videos_dir: outputs/videos
+  hsv_config: configs/hsv.yaml
+  calibration_config: configs/calibration.yaml
+
+video:
+  supported_extensions: [".mp4", ".mov", ".avi", ".mkv"]
+  frame_skip: 1          # process every Nth frame (1 = every frame)
+  max_frames: 0           # 0 = no limit
+  # A "sample" may also be a folder of tilt-angle photos instead of a video
+  # file (dataset/genuine/sample_001/frame_01.jpg, frame_02.jpg, ...).
+  # Such folders are read in filename order and treated as a fixed-fps clip.
+  image_extensions: [".jpg", ".jpeg", ".png", ".bmp", ".tif", ".tiff"]
+  image_sequence_fps: 5.0
+
+roi:
+  mode: auto               # auto | manual
+  aruco_dictionary: DICT_4X4_50
+  padding_ratio: 0.0        # extra margin around detected/selected ROI
+  default_box: [0.35, 0.35, 0.65, 0.65]  # fallback normalized [x1,y1,x2,y2]
+
+preprocessing:
+  gaussian_kernel: 5
+  median_kernel: 5
+  clahe_clip_limit: 2.0
+  clahe_tile_grid: 8
+  gamma: 1.0                # 1.0 = no correction; auto-gamma used if enabled
+  auto_gamma: true
+  white_balance: true
+  brightness_target: 128
+  stabilize: true
+
+filtering:
+  blur_laplacian_threshold: 60.0
+  overexposure_ratio: 0.6     # fraction of pixels near-white to flag frame
+  overexposure_v: 250
+  underexposure_ratio: 0.6
+  underexposure_v: 15
+  duplicate_hash_threshold: 3   # hamming distance on average-hash
+  outlier_zscore: 3.0
+  min_information_entropy: 2.5
+
+sequence:
+  min_run_length: 2          # minimum consecutive classified frames to count as a state
+  smoothing_window: 5         # majority-vote smoothing window over labels
+  use_kalman_smoothing: true
+  min_confidence: 0.35        # per-frame confidence floor to be counted
+
+decision:
+  genuine_sequence: "GNV"
+  counterfeit_sequence: "NGV"
+  min_overall_confidence: 0.4
+
+adaptive_hsv:
+  enabled: true
+  percentile_low: 5
+  percentile_high: 95
+
+api:
+  host: 0.0.0.0
+  port: 8000
+  upload_dir: outputs/uploads
+
+logging:
+  level: INFO
+  log_file: outputs/hologram_detector.log

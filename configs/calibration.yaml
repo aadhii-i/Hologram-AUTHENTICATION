@@ -1,0 +1,29 @@
+roi:
+  box:
+  - 0.21583333333333332
+  - 0.235625
+  - 0.7933333333333333
+  - 0.603125
+  aruco_ids: null
+hsv_overrides:
+  green:
+    h_min: 35
+    h_max: 85
+    s_min: 60
+    s_max: 255
+    v_min: 40
+    v_max: 255
+  violet:
+    h_min: 125
+    h_max: 160
+    s_min: 40
+    s_max: 255
+    v_min: 40
+    v_max: 255
+  neutral:
+    s_max: 40
+    v_min: 60
+    v_max: 255
+calibrated: true
+calibrated_on: '2026-08-05T14:59:10'
+notes: Run 'python run.py calibrate <video>' to populate this file interactively.

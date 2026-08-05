@@ -1,0 +1,25 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+*.egg-info/
+
+# Generated outputs (keep folder structure via .gitkeep)
+outputs/frames/*
+outputs/graphs/*
+outputs/roi/*
+outputs/reports/*
+outputs/videos/*
+outputs/uploads/*
+outputs/*.log
+!outputs/**/.gitkeep
+
+# Large/private datasets
+dataset/genuine/*
+dataset/counterfeit/*
+dataset/validation/*
+dataset/test/*
+!dataset/**/.gitkeep
+
+.ipynb_checkpoints/
