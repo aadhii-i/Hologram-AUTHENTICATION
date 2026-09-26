@@ -1,3 +1,4 @@
 - small refactor @ 2026-05-26T21:34:07+05:30
 - improve error handling @ 2026-06-29T14:45:54+05:30
 - optimize query @ 2026-11-02T17:25:55+05:30
+- update README @ 2026-09-26T18:12:28+05:30
